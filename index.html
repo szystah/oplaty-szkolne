@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>`</title>
+<style>
+  :root {
+    --bg: #f7f5f2;
+    --card: #ffffff;
+    --ink: #1f2320;
+    --ink-soft: #5b615c;
+    --accent: #2f6b4f;
+    --accent-soft: #e7f1ea;
+    --border: #e3ddd3;
+    --danger: #b3492f;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #16181a;
+      --card: #202325;
+      --ink: #eef0ee;
+      --ink-soft: #a6aba7;
+      --accent: #6ec79a;
+      --accent-soft: #223a2e;
+      --border: #33373a;
+      --danger: #e08268;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #16181a;
+    --card: #202325;
+    --ink: #eef0ee;
+    --ink-soft: #a6aba7;
+    --accent: #6ec79a;
+    --accent-soft: #223a2e;
+    --border: #33373a;
+    --danger: #e08268;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); height: 100%; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    height: 100%;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    line-height: 1.45;
+  }
+  .wrap { max-width: 620px; margin: 0 auto; padding: 20px 16px 40px; }
+  h1 { font-size: 1.35rem; margin: 4px 0 2px; }
+  .sub { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 18px; }
+
+  .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+  .tab {
+    flex: 1; padding: 10px; border-radius: 10px; border: 1px solid var(--border);
+    background: var(--card); color: var(--ink); font-size: 0.95rem; cursor: pointer;
+    text-align: center;
+  }
+  .tab[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px; margin-bottom: 14px;
+  }
+  .card h2 { font-size: 1.05rem; margin: 0 0 10px; }
+
+  .phone-row {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--accent-soft); border-radius: 10px; padding: 12px 14px; gap: 10px;
+  }
+  .phone-num { font-size: 1.25rem; font-weight: 700; letter-spacing: 0.5px; }
+  .copy-btn {
+    border: 1px solid var(--accent); color: var(--accent); background: transparent;
+    padding: 7px 12px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; white-space: nowrap;
+  }
+  .copy-btn:active { transform: scale(0.97); }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.94rem; }
+  th, td { text-align: left; padding: 7px 4px; border-bottom: 1px solid var(--border); }
+  th:last-child, td:last-child { text-align: right; }
+
+  .calc-row { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+  .calc-row > div { flex: 1; min-width: 120px; }
+  label { display: block; font-size: 0.82rem; color: var(--ink-soft); margin-bottom: 4px; }
+  select, input[type=number] {
+    width: 100%; padding: 9px 10px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--bg); color: var(--ink); font-size: 0.95rem;
+  }
+  .total-box {
+    margin-top: 12px; padding: 14px; border-radius: 10px; background: var(--accent-soft);
+  }
+  .total-amount { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+  .title-preview {
+    margin-top: 10px; padding: 10px 12px; background: var(--card); border: 1px dashed var(--border);
+    border-radius: 8px; font-size: 0.92rem; display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .title-text { word-break: break-word; }
+
+  input[type=text] {
+    width: 100%; padding: 9px 10px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--bg); color: var(--ink); font-size: 0.95rem;
+  }
+
+  .steps { padding-left: 18px; margin: 6px 0 0; font-size: 0.93rem; }
+  .steps li { margin-bottom: 4px; }
+
+  .note {
+    font-size: 0.82rem; color: var(--ink-soft); background: transparent; border-left: 3px solid var(--border);
+    padding: 8px 10px; margin-top: 16px;
+  }
+  .edit-note {
+    font-size: 0.78rem; color: var(--danger); margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>­čŹŻ´ŞĆ Op┼éaty za posi┼éki ÔÇô BLIK</h1>
+  <div class="sub">Bez zak┼éadania konta. P┼éatno┼Ť─ç BLIK-iem na telefon, z imieniem dziecka w tytule przelewu.</div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" id="tabbtn-1" aria-selected="true" role="tab" onclick="showSchool(1)">Szko┼éa nr 1</button>
+    <button class="tab" id="tabbtn-2" aria-selected="false" role="tab" onclick="showSchool(2)">Szko┼éa nr 2</button>
+  </div>
+
+  <div id="school-content"></div>
+
+  <div class="card">
+    <h2>Kalkulator kwoty i tytu┼éu przelewu</h2>
+    <div class="calc-row">
+      <div>
+        <label for="childName">Imi─Ö i nazwisko dziecka</label>
+        <input type="text" id="childName" placeholder="np. Jan Kowalski">
+      </div>
+      <div>
+        <label for="childClass">Klasa</label>
+        <input type="text" id="childClass" placeholder="np. 3B">
+      </div>
+    </div>
+    <div class="calc-row">
+      <div>
+        <label for="mealSelect">Posi┼éek</label>
+        <select id="mealSelect" onchange="calc()"></select>
+      </div>
+      <div>
+        <label for="daysCount">Liczba dni</label>
+        <input type="number" id="daysCount" min="1" value="20" onchange="calc()" oninput="calc()">
+      </div>
+    </div>
+
+    <div class="total-box">
+      <div>Do zap┼éaty BLIK-iem:</div>
+      <div class="total-amount" id="totalAmount">0,00 z┼é</div>
+    </div>
+
+    <div class="title-preview">
+      <span class="title-text" id="titlePreview">Wpisz imi─Ö i klas─Ö dziecka powy┼╝ej</span>
+      <button class="copy-btn" onclick="copyTitle()">Kopiuj tytu┼é</button>
+    </div>
+
+    <ol class="steps">
+      <li>Otw├│rz aplikacj─Ö swojego banku Ôćĺ BLIK Ôćĺ Przelew na telefon.</li>
+      <li>Wpisz numer telefonu szko┼éy (widoczny wy┼╝ej) i wyliczon─ů kwot─Ö.</li>
+      <li>W tytule wklej skopiowany tekst z imieniem, klas─ů i posi┼ékiem.</li>
+      <li>Zatwierd┼║ kodem BLIK.</li>
+    </ol>
+  </div>
+
+  <div class="note">
+    To jest prototyp bez logowania i bez przechowywania danych ÔÇö ka┼╝da wp┼éata jest rozliczana r─Öcznie przez intendenta na podstawie tytu┼é├│w przelew├│w w historii konta szko┼éy. Numery telefon├│w, nazwy szk├│┼é, posi┼éki i ceny poni┼╝ej s─ů przyk┼éadowe.
+    <div class="edit-note">Do edycji przed publikacj─ů: numery telefon├│w BLIK, nazwy szk├│┼é, nazwy posi┼ék├│w i ceny ÔÇö w sekcji SCHOOLS w kodzie strony.</div>
+  </div>
+</div>
+
+<script>
+  // ==== DANE DO EDYCJI PRZED PUBLIKACJ─ä ====
+  const SCHOOLS = {
+    1: {
+      name: "Szko┼éa Podstawowa nr 1",
+      phone: "500 000 001",
+      meals: [
+        { id: "zupa", label: "Zupa", price: 5.00 },
+        { id: "drugie-danie", label: "Drugie danie", price: 13.50 }
+      ]
+    },
+    2: {
+      name: "Szko┼éa Podstawowa nr 2",
+      phone: "500 000 002",
+      meals: [
+        { id: "zupa", label: "Zupa", price: 5.00 },
+        { id: "drugie-danie", label: "Drugie danie", price: 13.50 }
+      ]
+    }
+  };
+  // ==========================================
+
+  let currentSchool = 1;
+
+  function fmt(n) {
+    return n.toFixed(2).replace('.', ',') + ' z┼é';
+  }
+
+  function renderSchool() {
+    const s = SCHOOLS[currentSchool];
+    const rows = s.meals.map(m =>
+      `<tr><td>${m.label}</td><td>${fmt(m.price)}</td></tr>`
+    ).join('');
+    document.getElementById('school-content').innerHTML = `
+      <div class="card">
+        <h2>${s.name}</h2>
+        <div class="phone-row">
+          <div>
+            <label style="margin-bottom:2px;">Numer BLIK (przelew na telefon)</label>
+            <div class="phone-num">${s.phone}</div>
+          </div>
+          <button class="copy-btn" onclick="copyPhone()">Kopiuj numer</button>
+        </div>
+        <table>
+          <thead><tr><th>Posi┼éek</th><th>Cena / dzie┼ä</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    `;
+    const sel = document.getElementById('mealSelect');
+    sel.innerHTML = s.meals.map(m => `<option value="${m.id}">${m.label} ÔÇö ${fmt(m.price)}</option>`).join('');
+    calc();
+  }
+
+  function showSchool(n) {
+    currentSchool = n;
+    document.getElementById('tabbtn-1').setAttribute('aria-selected', n === 1 ? 'true' : 'false');
+    document.getElementById('tabbtn-2').setAttribute('aria-selected', n === 2 ? 'true' : 'false');
+    renderSchool();
+  }
+
+  function calc() {
+    const s = SCHOOLS[currentSchool];
+    const mealId = document.getElementById('mealSelect').value;
+    const meal = s.meals.find(m => m.id === mealId) || s.meals[0];
+    const days = Math.max(1, parseInt(document.getElementById('daysCount').value || '1', 10));
+    const total = meal.price * days;
+    document.getElementById('totalAmount').textContent = fmt(total);
+
+    const name = document.getElementById('childName').value.trim() || '[Imi─Ö i nazwisko]';
+    const cls = document.getElementById('childClass').value.trim() || '[klasa]';
+    const title = `${name}, kl. ${cls}, ${meal.label.split('(')[0].trim()} x${days}`;
+    document.getElementById('titlePreview').textContent = title;
+  }
+
+  async function copyPhone() {
+    try {
+      await navigator.clipboard.writeText(SCHOOLS[currentSchool].phone.replace(/\s/g, ''));
+    } catch (e) {}
+  }
+  async function copyTitle() {
+    try {
+      await navigator.clipboard.writeText(document.getElementById('titlePreview').textContent);
+    } catch (e) {}
+  }
+
+  document.getElementById('childName').addEventListener('input', calc);
+  document.getElementById('childClass').addEventListener('input', calc);
+
+  renderSchool();
+</script>
+</body>
+</html>
