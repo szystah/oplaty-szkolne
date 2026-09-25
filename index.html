@@ -119,21 +119,21 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>­čŹŻ´ŞĆ Op┼éaty za posi┼éki ÔÇô BLIK</h1>
-  <div class="sub">Bez zak┼éadania konta. P┼éatno┼Ť─ç BLIK-iem na telefon, z imieniem dziecka w tytule przelewu.</div>
+  <h1>🍽️ Opłaty za posiłki – BLIK</h1>
+  <div class="sub">Bez zakładania konta. Płatność BLIK-iem na telefon, z imieniem dziecka w tytule przelewu.</div>
 
   <div class="tabs" role="tablist">
-    <button class="tab" id="tabbtn-1" aria-selected="true" role="tab" onclick="showSchool(1)">Szko┼éa nr 1</button>
-    <button class="tab" id="tabbtn-2" aria-selected="false" role="tab" onclick="showSchool(2)">Szko┼éa nr 2</button>
+    <button class="tab" id="tabbtn-1" aria-selected="true" role="tab" onclick="showSchool(1)">Szkoła nr 1</button>
+    <button class="tab" id="tabbtn-2" aria-selected="false" role="tab" onclick="showSchool(2)">Szkoła nr 2</button>
   </div>
 
   <div id="school-content"></div>
 
   <div class="card">
-    <h2>Kalkulator kwoty i tytu┼éu przelewu</h2>
+    <h2>Kalkulator kwoty i tytułu przelewu</h2>
     <div class="calc-row">
       <div>
-        <label for="childName">Imi─Ö i nazwisko dziecka</label>
+        <label for="childName">Imię i nazwisko dziecka</label>
         <input type="text" id="childName" placeholder="np. Jan Kowalski">
       </div>
       <div>
@@ -143,7 +143,7 @@
     </div>
     <div class="calc-row">
       <div>
-        <label for="mealSelect">Posi┼éek</label>
+        <label for="mealSelect">Posiłek</label>
         <select id="mealSelect" onchange="calc()"></select>
       </div>
       <div>
@@ -153,34 +153,34 @@
     </div>
 
     <div class="total-box">
-      <div>Do zap┼éaty BLIK-iem:</div>
-      <div class="total-amount" id="totalAmount">0,00 z┼é</div>
+      <div>Do zapłaty BLIK-iem:</div>
+      <div class="total-amount" id="totalAmount">0,00 zł</div>
     </div>
 
     <div class="title-preview">
-      <span class="title-text" id="titlePreview">Wpisz imi─Ö i klas─Ö dziecka powy┼╝ej</span>
-      <button class="copy-btn" onclick="copyTitle()">Kopiuj tytu┼é</button>
+      <span class="title-text" id="titlePreview">Wpisz imię i klasę dziecka powyżej</span>
+      <button class="copy-btn" onclick="copyTitle()">Kopiuj tytuł</button>
     </div>
 
     <ol class="steps">
-      <li>Otw├│rz aplikacj─Ö swojego banku Ôćĺ BLIK Ôćĺ Przelew na telefon.</li>
-      <li>Wpisz numer telefonu szko┼éy (widoczny wy┼╝ej) i wyliczon─ů kwot─Ö.</li>
-      <li>W tytule wklej skopiowany tekst z imieniem, klas─ů i posi┼ékiem.</li>
-      <li>Zatwierd┼║ kodem BLIK.</li>
+      <li>Otwórz aplikację swojego banku → BLIK → Przelew na telefon.</li>
+      <li>Wpisz numer telefonu szkoły (widoczny wyżej) i wyliczoną kwotę.</li>
+      <li>W tytule wklej skopiowany tekst z imieniem, klasą i posiłkiem.</li>
+      <li>Zatwierdź kodem BLIK.</li>
     </ol>
   </div>
 
   <div class="note">
-    To jest prototyp bez logowania i bez przechowywania danych ÔÇö ka┼╝da wp┼éata jest rozliczana r─Öcznie przez intendenta na podstawie tytu┼é├│w przelew├│w w historii konta szko┼éy. Numery telefon├│w, nazwy szk├│┼é, posi┼éki i ceny poni┼╝ej s─ů przyk┼éadowe.
-    <div class="edit-note">Do edycji przed publikacj─ů: numery telefon├│w BLIK, nazwy szk├│┼é, nazwy posi┼ék├│w i ceny ÔÇö w sekcji SCHOOLS w kodzie strony.</div>
+    To jest prototyp bez logowania i bez przechowywania danych — każda wpłata jest rozliczana ręcznie przez intendenta na podstawie tytułów przelewów w historii konta szkoły. Numery telefonów, nazwy szkół, posiłki i ceny poniżej są przykładowe.
+    <div class="edit-note">Do edycji przed publikacją: numery telefonów BLIK, nazwy szkół, nazwy posiłków i ceny — w sekcji SCHOOLS w kodzie strony.</div>
   </div>
 </div>
 
 <script>
-  // ==== DANE DO EDYCJI PRZED PUBLIKACJ─ä ====
+  // ==== DANE DO EDYCJI PRZED PUBLIKACJĄ ====
   const SCHOOLS = {
     1: {
-      name: "Szko┼éa Podstawowa nr 1",
+      name: "Szkoła Podstawowa nr 1",
       phone: "500 000 001",
       meals: [
         { id: "zupa", label: "Zupa", price: 5.00 },
@@ -188,7 +188,7 @@
       ]
     },
     2: {
-      name: "Szko┼éa Podstawowa nr 2",
+      name: "Szkoła Podstawowa nr 2",
       phone: "500 000 002",
       meals: [
         { id: "zupa", label: "Zupa", price: 5.00 },
@@ -201,7 +201,7 @@
   let currentSchool = 1;
 
   function fmt(n) {
-    return n.toFixed(2).replace('.', ',') + ' z┼é';
+    return n.toFixed(2).replace('.', ',') + ' zł';
   }
 
   function renderSchool() {
@@ -220,13 +220,13 @@
           <button class="copy-btn" onclick="copyPhone()">Kopiuj numer</button>
         </div>
         <table>
-          <thead><tr><th>Posi┼éek</th><th>Cena / dzie┼ä</th></tr></thead>
+          <thead><tr><th>Posiłek</th><th>Cena / dzień</th></tr></thead>
           <tbody>${rows}</tbody>
         </table>
       </div>
     `;
     const sel = document.getElementById('mealSelect');
-    sel.innerHTML = s.meals.map(m => `<option value="${m.id}">${m.label} ÔÇö ${fmt(m.price)}</option>`).join('');
+    sel.innerHTML = s.meals.map(m => `<option value="${m.id}">${m.label} — ${fmt(m.price)}</option>`).join('');
     calc();
   }
 
@@ -245,7 +245,7 @@
     const total = meal.price * days;
     document.getElementById('totalAmount').textContent = fmt(total);
 
-    const name = document.getElementById('childName').value.trim() || '[Imi─Ö i nazwisko]';
+    const name = document.getElementById('childName').value.trim() || '[Imię i nazwisko]';
     const cls = document.getElementById('childClass').value.trim() || '[klasa]';
     const title = `${name}, kl. ${cls}, ${meal.label.split('(')[0].trim()} x${days}`;
     document.getElementById('titlePreview').textContent = title;
